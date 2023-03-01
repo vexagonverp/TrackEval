@@ -347,9 +347,11 @@ class MotChallenge2DBox(_BaseDataset):
             tracker_classes = raw_data['tracker_classes'][t]
             tracker_confidences = raw_data['tracker_confidences'][t]
             similarity_scores = raw_data['similarity_scores'][t]
-
+            
             # Evaluation is ONLY valid for pedestrian class
             if len(tracker_classes) > 0 and np.max(tracker_classes) > 1:
+                print(tracker_classes)
+                print(np.max(tracker_classes))
                 raise TrackEvalException(
                     'Evaluation is only valid for pedestrian class. Non pedestrian class (%i) found in sequence %s at '
                     'timestep %i.' % (np.max(tracker_classes), raw_data['seq'], t))
